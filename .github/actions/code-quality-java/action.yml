@@ -1,6 +1,20 @@
 name: "Static analysis of the code and testing"
 description: "A composite action to run static analysis and unit tests for a Java project."
 
+env:
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+inputs:
+  projectKey:
+    description: 'The SonarCloud project key'
+    required: true
+  organization:
+    description: 'The SonarCloud organization key'
+    required: true
+  sonarToken:
+    description: 'The SonarCloud authentication token'
+    required: true
 
 runs:
   using: "composite"
@@ -8,3 +22,14 @@ runs:
     - name: Run Checkstyle Analysis
       run: echo "my custom action"
       shell: bash
+    - name: Check out repository
+      uses: actions/checkout@main
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@v2.2.0
+      env:
+        SONAR_TOKEN: ${{ SONAR_TOKEN }}
+      with:
+        args: >
+          -Dsonar.projectKey=${{ inputs.projectKey }}
+          -Dsonar.organization=${{ inputs.organization }}
+          -Dsonar.host.url=https://sonarcloud.io
