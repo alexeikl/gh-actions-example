@@ -18,4 +18,4 @@ jobs:
       with:
         distribution: 'temurin' # See 'Supported distributions' for available options
         java-version: '21'
-    - run: cd java-app && ./mvnw compile
+    - run: cd java-app && ./mvnw package
