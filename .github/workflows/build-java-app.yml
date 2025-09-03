@@ -1,0 +1,21 @@
+## This workflow runs on all pull requests and issues.
+## It greets new contributors when they create their first issue or open their first pull request.
+##
+## More details on https://github.com/actions/first-interaction
+
+name: java compile and run
+
+on: [push, issue_comment]
+
+jobs:
+  build-java-app:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+    - uses: actions/checkout@main
+    - uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin' # See 'Supported distributions' for available options
+        java-version: '17'
+    - run: mvn compile
