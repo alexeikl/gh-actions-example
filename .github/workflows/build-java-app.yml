@@ -5,7 +5,7 @@
 
 name: java compile and run
 
-on: [push, issue_comment]
+on: [issue_comment]
 
 jobs:
   build-java-app:
