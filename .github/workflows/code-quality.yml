@@ -1,0 +1,21 @@
+## This workflow runs on all pull requests and issues.
+## It greets new contributors when they create their first issue or open their first pull request.
+##
+## More details on https://github.com/actions/first-interaction
+
+name: java compile and run
+
+on: [push]
+
+jobs:
+  build-java-app:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: java-app
+    permissions:
+      contents: read
+      packages: write
+    steps:
+    - uses: ./.github/actions/code-quality-java
+

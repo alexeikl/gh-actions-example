@@ -26,7 +26,7 @@ jobs:
           echo "MY_VAR=Overridden via GITHUB_ENV" >> $GITHUB_ENV
 
       - name: Print the final value
-        run: echo "Final MY_VAR value is $MY_VAR" && echo " -- expected - Overridden" # And there?
+        run: echo "Final MY_VAR value is $MY_VAR" && echo " -- expected - Overridden via GITHUB_ENV" # And there?
 
       - name: Print Secret-Based Variable
         run:
