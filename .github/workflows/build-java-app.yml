@@ -24,3 +24,4 @@ jobs:
       with:
         name: Package
         path: java-app/target/*.jar
+    - run: cd java-app && ./mvnw deploy
