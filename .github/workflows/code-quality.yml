@@ -14,8 +14,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@main
       - name: Copy files
-        working-directory: ${{ env.WORK_DIR }}/local_checkout
         run: cp -r .github "$GITHUB_WORKSPACE/"
       - name: Use local my-action
-        uses: ${{ env.WORK_DIR }}/local_checkout/.github/actions/code-quality-java
+        uses: .github/actions/code-quality-java
 
